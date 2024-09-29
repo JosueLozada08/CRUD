@@ -18,4 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/persona/crear', [PersonaController::class, 'crear'])->name('persona.crear'); /* ruta para la vista crear  */
-Route::post('/persona/bank', [PersonaController::class, 'crear'])->name('persona.crear'); 
+Route::post('/persona/bank', [PersonaController::class, 'bank'])->name('persona.bank');/* ruta post para enviar los datos  */
+Route::get('/persona/leer', [PersonaController::class, 'leer'])->name('persona.leer');
+Route::put('/persona/{persona}', [PersonaController::class, 'update'])->name('persona.update');
+
+
+
