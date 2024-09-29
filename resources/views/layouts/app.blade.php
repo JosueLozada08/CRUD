@@ -26,7 +26,7 @@
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="/persona/crear">Crear</a>
           <a class="nav-link" href="/persona/leer">Leer</a>
-          <a class="nav-link" href="/persona/eliminar">Eliminar</a>
+          <a class="nav-link" href="/persona/borrar">Borrar</a>
         </div>
       </div>
     </div>

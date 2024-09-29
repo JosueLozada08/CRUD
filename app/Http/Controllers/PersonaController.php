@@ -19,7 +19,15 @@ class PersonaController extends Controller
         // Enviar la variable $personas a la vista
         return view('persona.leer', compact('personas')); // Usar el nombre correcto de la variable
     }
+    public function borrar()
+    {
+        
+        $personas = Persona::all(); 
     
+     
+        return view('persona.borrar', compact('personas')); 
+    }
+
     public function update(Request $request, Persona $persona )
     {
          // Validación de los campos
@@ -58,4 +66,43 @@ class PersonaController extends Controller
         // Redirigir con un mensaje de éxito
         return redirect()->back()->with('success', 'Persona creada correctamente.');
     }
+
+
+  
+
+    public function destroy($id)
+    {
+        // Buscar la persona por ID
+        $persona = Persona::find($id);
+        
+        // Verificar si la persona existe
+        if ($persona) {
+            $persona->delete(); // Eliminar la persona
+            return redirect()->back()->with('success', 'Persona borrada correctamente.');
+        } else {
+            return redirect()->back()->with('error', 'La persona no se encontró.');
+        }
+    }
+    
+
+    public function search(Request $request)
+    {
+        // Obtener el término de búsqueda (nombre o ID)
+        $searchTerm = $request->input('search');
+    
+        // Buscar la persona por ID o Nombre
+        $persona = Persona::where('id', $searchTerm)
+                    ->orWhere('nombre', 'like', "%{$searchTerm}%")
+                    ->first();
+    
+        // Si se encuentra la persona, devolver la vista con los datos
+        if ($persona) {
+            return view('persona.borrar', compact('persona'));
+        } else {
+            // Si no se encuentra, devolver con un mensaje de error
+            return redirect()->back()->with('error', 'Persona no encontrada.');
+        }
+    }
+    
+
 }

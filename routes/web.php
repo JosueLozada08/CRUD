@@ -17,10 +17,24 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/persona/crear', [PersonaController::class, 'crear'])->name('persona.crear'); /* ruta para la vista crear  */
-Route::post('/persona/bank', [PersonaController::class, 'bank'])->name('persona.bank');/* ruta post para enviar los datos  */
+
+// Ruta para crear una persona
+Route::get('/persona/crear', [PersonaController::class, 'crear'])->name('persona.crear');
+
+// Ruta para guardar una persona
+Route::post('/persona/bank', [PersonaController::class, 'bank'])->name('persona.bank');
+
+// Ruta para leer las personas
 Route::get('/persona/leer', [PersonaController::class, 'leer'])->name('persona.leer');
+
+// Ruta para actualizar una persona
 Route::put('/persona/{persona}', [PersonaController::class, 'update'])->name('persona.update');
 
+// Ruta para ver el formulario de eliminar personas
+Route::get('/persona/borrar', [PersonaController::class, 'borrar'])->name('persona.borrar');
 
+// Ruta para eliminar una persona
+Route::delete('/persona/{id}', [PersonaController::class, 'destroy'])->name('persona.destroy');
 
+// Ruta para buscar una persona por ID o nombre
+Route::get('/persona/search', [PersonaController::class, 'search'])->name('persona.search');
