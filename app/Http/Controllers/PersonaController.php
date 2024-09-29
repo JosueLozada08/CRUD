@@ -71,18 +71,21 @@ class PersonaController extends Controller
   
 
     public function destroy($id)
-    {
-        // Buscar la persona por ID
-        $persona = Persona::find($id);
-        
-        // Verificar si la persona existe
-        if ($persona) {
-            $persona->delete(); // Eliminar la persona
-            return redirect()->back()->with('success', 'Persona borrada correctamente.');
-        } else {
-            return redirect()->back()->with('error', 'La persona no se encontró.');
-        }
+{
+    // Buscar la persona por ID
+    $persona = Persona::find($id);
+    
+    // Verificar si la persona existe
+    if ($persona) {
+        $persona->delete(); // Eliminar la persona
+        // Redirigir a la página de creación con un mensaje de éxito
+        return redirect()->route('persona.crear')->with('success', 'Persona borrada correctamente.');
+    } else {
+        // Redirigir a la página de creación con un mensaje de error si no se encontró la persona
+        return redirect()->route('persona.crear')->with('error', 'La persona no se encontró.');
     }
+}
+
     
 
     public function search(Request $request)
