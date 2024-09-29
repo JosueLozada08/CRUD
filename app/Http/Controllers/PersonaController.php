@@ -13,12 +13,13 @@ class PersonaController extends Controller
     }
     public function leer()
     {
-        /* $persona = Persona::all();
-        dd($persona); */
-
-        $persona = Persona::all();
-        return view('persona.leer', compact('persona'));
+        // Cambiar $persona a $personas (en plural)
+        $personas = Persona::all(); // Obtener todas las personas desde la base de datos
+    
+        // Enviar la variable $personas a la vista
+        return view('persona.leer', compact('personas')); // Usar el nombre correcto de la variable
     }
+    
     public function update(Request $request, Persona $persona )
     {
          // Validación de los campos
