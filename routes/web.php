@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PersonaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/persona/crear', [PersonaController::class, 'crear'])->name('persona.crear'); /* ruta para la vista crear  */
+Route::post('/persona/bank', [PersonaController::class, 'crear'])->name('persona.crear'); 
