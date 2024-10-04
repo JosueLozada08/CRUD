@@ -68,7 +68,7 @@ class PersonaController extends Controller
     }
 
 
-  
+             
 
     public function destroy($id)
 {
@@ -109,3 +109,6 @@ class PersonaController extends Controller
     
 
 }
+
+
+

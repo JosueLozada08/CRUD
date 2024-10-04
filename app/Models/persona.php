@@ -9,7 +9,11 @@ class persona extends Model
 {
     use HasFactory;
     protected $table = 'persona'; /* base de datos  */
-    protected $fillable = ['nombre', 'edad', 'ocupacion' ];
+    protected $fillable = [
+        'nombre', 
+        'edad', 
+        'ocupacion' 
+    ];
 
-    public $timestamps = false; /* desactivar rehistro de fecha de laravel  */
+    public $timestamps = false; /* desactivar registro de fecha de laravel  */
 }
