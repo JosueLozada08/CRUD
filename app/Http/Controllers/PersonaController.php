@@ -3,12 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Persona; // Corregir la importación de Persona (la clase debe comenzar con mayúscula)
+use App\Models\Persona; // Importa el modelo Persona
+use PDF;
+/* use Illuminate\Support\Facades\Hash; // Corrige el error tipográfico aquí */
 
 class PersonaController extends Controller
 {
+   
+    public function __construct()
+    {
+        $this-> middleware('auth:usuarios');
+    }
     public function crear()
     {
+
+        /* Creacion de hash */
+        /* $password = Hash::make('123');
+        dd($password); */
         return view('persona.crear');
     }
     public function leer()

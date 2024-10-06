@@ -33,7 +33,29 @@ public function login(Request $request)
         // Redirige al usuario a la página que intentaba acceder o a la página por defecto
         return redirect()->intended('/personas/inicio');
     }
-    // (Opcional) Si las credenciales son incorrectas, podrías agregar un mensaje de error o redirigir
+    
+    // Devuelve a la vista anterior con un mensaje de error
+    return back()->withErrors([
+        'user_name'=> 'la clave o el usuario son incorrectos '
+    ]);
+
+}
+
+
+// Método para manejar el cierre de sesión
+public function logout(Request $request)
+{
+    // Cierra la sesión del guard 'usuarios'
+    Auth::gusrd('usuarios')->logout();
+
+     // Invalida la sesión actual para asegurar que no se pueda usar después de cerrar sesión
+     $request->session()->invalidate();
+    
+     // Regenera el token de la sesión para evitar ataques CSRF (Cross-Site Request Forgery)
+     $request->session()->regenerateToken();
+
+    // Redirige al usuario a la página de inicio de sesión
+     return redirect('/login');
 }
 
 }
