@@ -19,6 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::middleware(['auth:usuarios', 'check.user.type:0'])->group(function(){
+
 // Ruta para crear una persona
 Route::get('/persona/crear', [PersonaController::class, 'crear'])->name('persona.crear');
 
@@ -36,6 +39,8 @@ Route::get('/persona/borrar', [PersonaController::class, 'borrar'])->name('perso
 
 // Ruta para eliminar una persona
 Route::delete('/persona/{id}', [PersonaController::class, 'destroy'])->name('persona.destroy');
+
+});
 
 // Ruta para buscar una persona por ID o nombre
 Route::get('/persona/search', [PersonaController::class, 'search'])->name('persona.search');
