@@ -34,13 +34,14 @@ Route::get('/persona/leer', [PersonaController::class, 'leer'])->name('persona.l
 // Ruta para actualizar una persona
 Route::put('/persona/{persona}', [PersonaController::class, 'update'])->name('persona.update');
 
-// Ruta para ver el formulario de eliminar personas
-Route::get('/persona/borrar', [PersonaController::class, 'borrar'])->name('persona.borrar');
+
 
 // Ruta para eliminar una persona
 Route::delete('/persona/{id}', [PersonaController::class, 'destroy'])->name('persona.destroy');
 
 });
+// Ruta para ver el formulario de eliminar personas
+Route::get('/persona/borrar', [PersonaController::class, 'borrar'])->name('persona.borrar');
 
 // Ruta para buscar una persona por ID o nombre
 Route::get('/persona/search', [PersonaController::class, 'search'])->name('persona.search');

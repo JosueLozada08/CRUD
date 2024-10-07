@@ -10,21 +10,18 @@
                     </div>
                     <div class="card-body">
                         <p class="text-center">Por favor ingresa tus credenciales</p>
-
+                        
                         <!-- Formulario de login -->
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
-
                             <div class="form-group">
                                 <label for="user_name">Nombre de Usuario</label>
-                                <input type="text" id="user_name" name="user_name" class="form-control" value="{{ old('user_name') }}" required> <!-- Preservar valor -->
+                                <input type="text" id="user_name" name="user_name" class="form-control" value="{{ old('user_name') }}" required>
                             </div>
-
                             <div class="form-group">
                                 <label for="user_pass">Contraseña</label>
                                 <input type="password" id="user_pass" name="user_pass" class="form-control" required>
                             </div>
-
                             <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
                         </form>
 

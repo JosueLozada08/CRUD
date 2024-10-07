@@ -19,7 +19,7 @@ class PersonaController extends Controller
     public function crear()
     {
 
-        /* Creacion de hash */
+       /* Creacion de hash  */
         /* $password = Hash::make('123');
         dd($password); */
         return view('persona.crear');
