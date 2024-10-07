@@ -9,11 +9,13 @@ use PDF;
 
 class PersonaController extends Controller
 {
-   
+   /* permite que los usuarios autenticado accedan */
     public function __construct()
     {
         $this-> middleware('auth:usuarios');
     }
+
+
     public function crear()
     {
 
