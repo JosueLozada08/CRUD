@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware; // Extiende la clase base de middleware de autenticación en Laravel
-use Illuminate\Http\Request; // Importa la clase Request para manejar solicitudes HTTP
+/* use Illuminate\Http\Request;  */// Importa la clase Request para manejar solicitudes HTTP
 
 class Authenticate extends Middleware
 {

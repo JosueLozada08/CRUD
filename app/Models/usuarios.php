@@ -3,30 +3,32 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable; // Corregido: el namespace estaba mal escrito
 
-class usuarios extends Model
+
+class Usuarios extends Authenticatable // Cambiado a 'Authenticatable' en lugar de 'Model'
 {
-    use HasFactory; // Habilita la funcionalidad de creación de instancias de modelo utilizando el Factory Pattern
-    protected $table = 'usuarios'; /* Especifica el nombre de la tabla en la base de datos asociada con este modelo */
+    use  HasFactory; // Incluye 'Notifiable' si usas notificaciones
 
-    // Define los campos que pueden ser rellenados masivamente (por ejemplo, mediante métodos como create o update)
+    protected $table = 'usuarios'; // Especifica el nombre de la tabla
+
+    // Define los campos que pueden ser rellenados masivamente
     protected $fillable = [
         'user_name',  // Nombre de usuario
         'user_pass',  // Contraseña del usuario
-        'user_tipo'   // Tipo de usuario (posiblemente rol o permisos)
+        'user_tipo'   // Tipo de usuario
     ];
 
-    // Define los atributos que deberían estar ocultos cuando el modelo sea convertido a un array o JSON
+    // Oculta la contraseña al convertir el modelo en un array o JSON
     protected $hidden = [
-        'user_pass', // Oculta la contraseña para no ser expuesta al hacer transformaciones de JSON o array
+        'user_pass',
     ];
 
-    // Método para obtener la contraseña para el proceso de autenticación
+    // Método para obtener la contraseña para la autenticación
     public function getAuthPassword()
     {
-        return $this->user_pass; // Retorna el campo 'user_pass' como la contraseña de autenticación
+        return $this->user_pass;
     }
 
-    public $timestamps = false; // Desactiva el uso de timestamps automáticos (created_at y updated_at) en la tabla
+    public $timestamps = false; // Desactiva el uso de timestamps automáticos
 }
