@@ -9,7 +9,7 @@ class Authenticate extends Middleware
 {
     /**
      * Obtiene la ruta a la cual el usuario debe ser redirigido cuando no está autenticado.
-     * @param \Iluminate\Http\Request $request // Recibe una solicitud HTTP
+     * @param \Illuminate\Http\Request $request // Recibe una solicitud HTTP
      * @return string|null // Devuelve la URL a la cual se redirige o null si no es necesario redirigir
      */
     protected function redirectTo($request)

@@ -39,14 +39,15 @@ Route::put('/persona/{persona}', [PersonaController::class, 'update'])->name('pe
 // Ruta para eliminar una persona
 Route::delete('/persona/{id}', [PersonaController::class, 'destroy'])->name('persona.destroy');
 
-});
+
 // Ruta para ver el formulario de eliminar personas
 Route::get('/persona/borrar', [PersonaController::class, 'borrar'])->name('persona.borrar');
 
 // Ruta para buscar una persona por ID o nombre
 Route::get('/persona/search', [PersonaController::class, 'search'])->name('persona.search');
+});
 
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');/* formulario de login  */
+Route::post('login', [LoginController::class, 'login'])->name('login'); /* para iniciar sesion  */
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('login', [LoginController::class, 'login'])->name('login');
-Route::post('login', [LoginController::class, 'logout'])->name('login');

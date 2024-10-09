@@ -41,11 +41,11 @@ return [
             'provider' => 'users',
         ],
 
-        'api' => [
+        /* 'api' => [
             'driver' => 'token',
             'provider' => 'users',
             'hash' => false,
-        ],
+        ], */
 
         // Añade un nuevo guard para los usuarios personalizados
         'usuarios' => [

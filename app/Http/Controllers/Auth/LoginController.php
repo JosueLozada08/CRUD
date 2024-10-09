@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Usuarios;
 
 class LoginController extends Controller
 {
@@ -15,42 +16,43 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    // Manejar el proceso de inicio de sesión
     public function login(Request $request)
-    {
-        // Validar las credenciales proporcionadas
-        $request->validate([
-            'user_name' => 'required|string',
-            'user_pass' => 'required|string',
-        ]);
+{
+    // Validar las credenciales proporcionadas
+    $request->validate([
+        'user_name' => 'required|string',
+        'user_pass' => 'required|string',
+    ]);
 
-        // Buscar al usuario por nombre de usuario
-        $user = \App\Models\Usuarios::where('user_name', $request->user_name)->first();
+    // Obtener las credenciales del formulario
+    $credentials = $request->only('user_name', 'user_pass');
+    
+    // Buscar al usuario por su nombre de usuario
+    $user = Usuarios::where('user_name', $credentials['user_name'])->first();
 
-        // Verificar si el usuario existe y la contraseña es correcta
-        if ($user && Hash::check($request->user_pass, $user->user_pass)) {
-            // Iniciar sesión para el usuario
-            Auth::guard('usuarios')->login($user);
-
-            // Redirigir al usuario a la página de inicio
-            return redirect()->intended('/personas/inicio');
-        }
-
-        // Retornar con un error si las credenciales no son correctas
-        return back()->withErrors([
-            'user_name' => 'El nombre de usuario o la contraseña son incorrectos.',
-        ])->withInput(); // Mantener los valores del formulario
+    // Verificar si el usuario existe y si la contraseña es correcta
+    if ($user && Hash::check($credentials['user_pass'], $user->user_pass)) {
+        // Iniciar sesión con el guard 'usuarios'
+        Auth::guard('usuarios')->login($user);
+        return redirect()->intended('/libros/inicio');
     }
 
-    // Cerrar sesión
-    public function logout(Request $request)
+    // Si las credenciales no coinciden, retornar con un mensaje de error
+    return back()->withErrors([
+        'user_name' => 'Las credenciales no coinciden con nuestros registros.',
+    ])->withInput(); // Mantener los valores del formulario
+}
+
+    
+
+        public function logout(Request $request)
     {
         Auth::guard('usuarios')->logout();
 
-        // Invalida la sesión actual y regenera el token CSRF
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return redirect('/login');
     }
+
 }
